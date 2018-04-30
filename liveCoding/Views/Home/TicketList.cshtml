@@ -1,0 +1,31 @@
+<h3>Here are all your tickets</h3>
+
+<ul>
+    @foreach(var ticket in Model)
+    {
+        <div class="jumbotron">
+            <li>An Event on @ticket.GetDate()
+                <ul>
+                <li>Your seat is: @ticket.GetSeat()</li>
+                <li>The cost is: $@ticket.GetPrice()</li>
+                <li>@ticket.GetId()</li>
+                @if(ticket.GetScanned() == true)
+                {
+                    <li><strong>This ticket has been used</strong></li>
+                } else {
+                    <p><a href="/scan/@ticket.GetId()">SCAN THIS TICKET NOW</a></p>
+                }
+                <hr>
+                <li>CONFIRMATION NUMBER: 34563426@{@ticket.GetId()}</li>
+                </ul>
+            </li>
+            </div>
+    }
+</ul>
+
+<p>
+    <a href="/">HOME</a>
+</p>
+<p>
+    <a href="/tickets/new">BUY A NEW TICKET</a>
+</p>
