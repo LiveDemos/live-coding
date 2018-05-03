@@ -26,7 +26,7 @@ namespace liveCoding.Controllers
         [HttpGet("/tickets/new")]
         public ActionResult TicketForm()
         {
-            return View();
+            return View(Event.GetAll());
         }
 
         [HttpPost("/submit")]
@@ -35,18 +35,18 @@ namespace liveCoding.Controllers
             int price = int.Parse(Request.Form["price"]);
             string seat = Request.Form["seat"];
             string date = Request.Form["date"];
-            Ticket newTicket = new Ticket(price, seat, date);
+            int event_id = int.Parse(Request.Form["event"]);
+            Ticket newTicket = new Ticket(price, seat, date, event_id);
             newTicket.Save();
             return RedirectToAction("TicketList");
         }
-        [HttpGet("/scan/{id}")]
-        public ActionResult ScanTicket(int id)
-        {
-            Ticket.Find(id).Scan();
-            return View("TicketList", Ticket.GetAll());
-            // return RedirectToAction("TicketList");
-        }
 
+        [HttpGet("/events")]
+        public ActionResult EventList()
+        {
+            List<Event> allEvents = Event.GetAll();
+            return View(allEvents);
+        }
 
 
     }

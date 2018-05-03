@@ -1,5 +1,13 @@
 <h2>Reserve your Seat!</h2>
 <form action="/submit" method="post">
+    <label for="event">Choose Event:</label>
+    <select name="event">
+        @foreach(var thisEvent in Model)
+        {
+            <option value="@thisEvent.GetId()">@thisEvent.GetName()</option>
+        }
+    </select>
+    <br>
     <label for="price">Select Seat Level</label>
     <select name="price">
         <option value="20">General Admission</option>

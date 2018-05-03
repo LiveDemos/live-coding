@@ -1,0 +1,7 @@
+<h2>Here are all the events</h2>
+<ul>
+    @foreach(var thisEvent in Model)
+    {
+        <li>@thisEvent.GetName() - @thisEvent.GetLocation()</li>
+    }
+</ul>
